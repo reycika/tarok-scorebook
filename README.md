@@ -157,8 +157,6 @@ This project demonstrates my end-to-end product approach:
 - Deploying it as a Progressive Web App
 - Continuously improving it based on feedback
 
-Although it's a personal side project, I approached it exactly as I would any professional software product—from discovery to production.
-
 ---
 
 # 🇸🇮 Slovenska različica

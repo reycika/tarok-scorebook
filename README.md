@@ -118,14 +118,6 @@ Start another game anytime by selecting **New Game**.
 
 ---
 
-# 💾 Offline support
-
-All data is stored locally on your device.
-
-If you close the browser or app during a game, everything is restored automatically when you reopen it.
-
----
-
 # ✨ Features
 
 - 🃏 Automatic Tarok score calculation
@@ -221,5 +213,3 @@ Med igro lahko tapneš na kateri koli že vpisan rezultat, da ga urediš ali izb
 Gumb **"Zaključi igro"** (s potrditvenim oknom, da preprečimo pomoto) obračuna vse še aktivne radlce (−100 za vsakega) in zaklene beležko. Nato lahko z gumbom **"Nova igra"** začneš novo beležko.
 
 ---
-
-*Beležka shranjuje podatke lokalno na napravi — če zapreš aplikacijo sredi igre, se ob ponovnem odprtju nadaljuje tam, kjer si končal.*

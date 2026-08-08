@@ -1,7 +1,7 @@
 // Bump this version string every time bundle.js/index.html change so old
 // caches get discarded automatically — this is what makes updates actually
 // reach installed phones instead of getting stuck on a stale cached copy.
-const CACHE_VERSION = "v3";
+const CACHE_VERSION = "v4";
 const CACHE_NAME = `tarok-scorebook-${CACHE_VERSION}`;
 const APP_SHELL = [
   "./",
@@ -33,6 +33,14 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
+
+  // version.json is the update-detector: always go straight to the network,
+  // never touch the cache at all, so it can never get stuck.
+  if (url.pathname.endsWith("/version.json")) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   const path = "." + url.pathname.replace(/^\/[^/]*/, "") || "./";
   const isAppShellCore =
     NETWORK_FIRST.some((p) => url.pathname.endsWith(p.replace("./", "/"))) ||

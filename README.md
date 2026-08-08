@@ -1,4 +1,171 @@
 # tarok-scorebook
+> 🚀 Built with AI-assisted development using modern LLM tools.
+> Product discovery, UX, implementation, testing and deployment by a single Product Builder.
+
+# Tarok Scorebook
+
+A digital scorebook for the Slovenian version of Tarok. Instead of calculating scores manually on paper, the application automatically calculates the value of each game (base value + point difference + bonuses + multipliers + Radelci) and keeps a running total for every player.
+
+---
+
+## 🔗 Open the App
+
+👉 **https://reycika.github.io/tarok-scorebook/**
+
+Works in any modern browser on desktop and mobile — no installation required.
+
+For the best mobile experience, see **Install on your phone** below.
+
+---
+
+## 📱 Install on your phone (PWA)
+
+### iPhone (Safari)
+
+1. Open the link above in Safari.
+2. Tap the **Share** button.
+3. Select **Add to Home Screen**.
+
+### Android (Chrome)
+
+1. Open the link above in Chrome.
+2. Tap the **⋮** menu.
+3. Select **Install App** or **Add to Home Screen**.
+
+After installation, the app launches in full-screen mode (without browser controls) and continues to work offline.
+
+---
+
+# 🃏 How to use
+
+## 1. Create a new scorebook
+
+- Enter the game location.
+- Choose the number of players (3 or 4).
+- Enter the players' names.
+- Select the starting dealer.
+
+The dealer rotates automatically clockwise after every game.
+
+---
+
+## 2. Add a game
+
+After each hand, tap **+ Add** under the player who called the game (or any player for Klop).
+
+Fill in:
+
+- Game type
+- Partner (for One / Two / Three games)
+- Point difference
+- Win / Loss
+- Game multiplier (Kontra, Rekontra, Mord, Sub)
+- Bonuses
+  - Trula
+  - Pagat
+  - Kings
+  - Last King
+  - Colour Valat
+  - Valat
+
+The application automatically:
+
+- calculates the score
+- applies active Radelci
+- rounds to the nearest 5 points
+- updates every player's total
+
+---
+
+## 3. Klop
+
+For Klop, select for every player:
+
+- None
+- Full
+- Empty
+
+Then enter the number of cards.
+
+The application validates that all players together have exactly **70 cards**.
+
+According to the official rules, only the player sitting immediately after the dealer may enter a Klop.
+
+---
+
+## 4. Radelci
+
+Whenever a game worth **70 points or more** is played, every player receives a **Radelc** (displayed as a golden dot).
+
+A player may activate an unused Radelc when calling a future game.
+
+- **Win:** score is doubled and the Radelc is consumed.
+- **Loss:** score is doubled but the Radelc remains active.
+
+---
+
+## 5. Edit previous rounds
+
+Tap any previous result to edit or delete it.
+
+---
+
+## 6. Finish the game
+
+Press **Finish Game** to calculate all remaining active Radelci (-100 points each) and lock the scorebook.
+
+Start another game anytime by selecting **New Game**.
+
+---
+
+# 💾 Offline support
+
+All data is stored locally on your device.
+
+If you close the browser or app during a game, everything is restored automatically when you reopen it.
+
+---
+
+# ✨ Features
+
+- 🃏 Automatic Tarok score calculation
+- 👥 3- and 4-player support
+- 🔄 Automatic dealer rotation
+- ✅ Built-in game validation
+- ⭐ Automatic Radelci management
+- ✏️ Edit and delete previous rounds
+- 📈 Running score history
+- 📱 Progressive Web App (PWA)
+- 🌐 Offline support
+- 📲 Mobile-first responsive design
+
+---
+
+# 🛠️ Why I built this
+
+My friends and I have been keeping Tarok scores on paper for years.
+
+I wanted to eliminate manual calculations, reduce mistakes, and make scorekeeping significantly faster while respecting the official Slovenian Tarok rules.
+
+This project demonstrates my end-to-end product approach:
+
+- Identifying a real user problem
+- Defining product requirements
+- Designing the user workflow
+- Building the MVP with AI assistance
+- Testing it with real users
+- Deploying it as a Progressive Web App
+- Continuously improving it based on feedback
+
+Although it's a personal side project, I approached it exactly as I would any professional software product—from discovery to production.
+
+---
+
+# 🇸🇮 Slovenska različica
+
+A Slovenian version of this README is available below.
+
+
 # Tarok beležka
 
 Digitalna beležka za vodenje rezultatov pri slovenski različici taroka. Namesto ročnega seštevanja v zvezku aplikacija sama izračuna vrednost vsake igre (osnova + razlika + bonusi + kontre + radlci) in sproti vodi seštevek za vsakega igralca.

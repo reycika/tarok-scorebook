@@ -27,7 +27,22 @@
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+        navigator.serviceWorker
+          .register("./service-worker.js")
+          .then((reg) => {
+            // force an update check on every load instead of waiting for
+            // the browser's own (sometimes slow/throttled) update cycle
+            reg.update().catch(() => {});
+            // if a new worker takes over while this tab is open, reload
+            // once so the fresh bundle.js actually gets used
+            let reloaded = false;
+            navigator.serviceWorker.addEventListener("controllerchange", () => {
+              if (reloaded) return;
+              reloaded = true;
+              window.location.reload();
+            });
+          })
+          .catch(() => {});
       });
     }
   </script>

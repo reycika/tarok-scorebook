@@ -1,24 +1,15 @@
-// Bump this version string every time bundle.js/index.html change so old
-// caches get discarded automatically — this is what makes updates actually
-// reach installed phones instead of getting stuck on a stale cached copy.
-const CACHE_VERSION = "v4";
+// v5: bundle.js/index.html/version.json are now NETWORK-ONLY — never read
+// from or written to any cache. This trades away offline support for the
+// app's actual code (icons/manifest still cache normally) in exchange for
+// updates always reaching the device immediately, no matter what. Given how
+// persistently this got stuck before, that trade is worth it.
+const CACHE_VERSION = "v5";
 const CACHE_NAME = `tarok-scorebook-${CACHE_VERSION}`;
-const APP_SHELL = [
-  "./",
-  "./index.html",
-  "./bundle.js",
-  "./manifest.json",
-  "./icon-192.png",
-  "./icon-512.png",
-];
-// files that should always be fetched fresh first (fall back to cache only
-// when offline) so a GitHub update shows up the next time you have a signal
-const NETWORK_FIRST = ["./", "./index.html", "./bundle.js"];
+const CACHED_ASSETS = ["./manifest.json", "./icon-192.png", "./icon-512.png"];
+const NETWORK_ONLY = ["./", "./index.html", "./bundle.js", "./version.json"];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHED_ASSETS)));
   self.skipWaiting();
 });
 
@@ -33,31 +24,15 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
-
-  // version.json is the update-detector: always go straight to the network,
-  // never touch the cache at all, so it can never get stuck.
-  if (url.pathname.endsWith("/version.json")) {
-    event.respondWith(fetch(event.request));
-    return;
-  }
-
-  const path = "." + url.pathname.replace(/^\/[^/]*/, "") || "./";
-  const isAppShellCore =
-    NETWORK_FIRST.some((p) => url.pathname.endsWith(p.replace("./", "/"))) ||
+  const isNetworkOnly =
+    NETWORK_ONLY.some((p) => url.pathname.endsWith(p.replace("./", "/"))) ||
     event.request.mode === "navigate";
 
-  if (isAppShellCore) {
-    // network-first: always try to get the latest version; only fall back
-    // to the cached copy if there's no connection
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-          return response;
-        })
-        .catch(() => caches.match(event.request))
-    );
+  if (isNetworkOnly) {
+    // straight to the network, every single time — no cache read, no cache
+    // write. If there's truly no connection this will fail and the app
+    // won't load, but it can never again get silently stuck on stale code.
+    event.respondWith(fetch(event.request));
     return;
   }
 

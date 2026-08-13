@@ -209,6 +209,8 @@ Vsakič, ko je odigrana igra vredna 70 ali več (Klop, Berač, Solo brez, Odprti
 ### 5. Urejanje vnosov
 Med igro lahko tapneš na kateri koli že vpisan rezultat, da ga urediš ali izbrišeš.
 
+Želim vam prijetno uporabo beležke.
+
 ### 6. Zaključek igre
 Gumb **"Zaključi igro"** (s potrditvenim oknom, da preprečimo pomoto) obračuna vse še aktivne radlce (−100 za vsakega) in zaklene beležko. Nato lahko z gumbom **"Nova igra"** začneš novo beležko.
 
